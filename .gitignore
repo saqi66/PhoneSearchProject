@@ -31,3 +31,31 @@ build/
 
 ### VS Code ###
 .vscode/
+.codeium/
+.gitconfig
+.gradle/
+.jdks/
+.lesshst
+.m2/
+AppData/
+Contacts/
+Desktop/
+Documents/
+Downloads/
+Favorites/
+IdeaProjects/
+Links/
+Music/
+NTUSER.DAT*
+OneDrive/
+Pictures/
+PycharmProjects/
+Saved Games/
+Searches/
+Videos/
+_netrc
+edb_psqlodbc.exe
+edb_psqlodbc.exe-20240508054550
+ntuser.dat.LOG1
+ntuser.dat.LOG2
+ntuser.ini
