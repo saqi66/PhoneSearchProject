@@ -43,7 +43,7 @@ public class SecurityConfig {
     public UserDetailsService userDetailsService() {
         UserDetails user = User.builder()
                 .username("Saqi")
-                .password(passwordEncoder().encode("19980718"))
+                .password(passwordEncoder().encode("1998"))
                 .roles("USER")
                 .build();
 
