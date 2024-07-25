@@ -21,7 +21,7 @@ public class PhoneController {
     private final PhoneUpdateService updateService;
     private final PhoneDeleteService deleteService;
 
-    @GetMapping("/")
+    @GetMapping("/phones")
     public String listPhones(Model model) {
         model.addAttribute("phones", readInfoService.readInfo());
         return "phones";
