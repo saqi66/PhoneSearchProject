@@ -16,7 +16,7 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests((requests) -> requests
-                        .requestMatchers("/").permitAll() // Ana səhifəyə icazə ver
+                        .requestMatchers("/phones").permitAll() // Ana səhifəyə icazə ver
                         .anyRequest().authenticated() // Qalan bütün səhifələr üçün doğrulama tələb et
                 )
                 .formLogin((form) -> form
