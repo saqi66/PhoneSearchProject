@@ -20,7 +20,7 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests((requests) -> requests
-                        .requestMatchers("/", "/home").permitAll() // Ana səhifəyə icazə ver
+                        .requestMatchers("/phones", "/home").permitAll() // Ana səhifəyə icazə ver
                         .anyRequest().authenticated() // Qalan bütün səhifələr üçün doğrulama tələb et
                 )
                 .formLogin((form) -> form
@@ -42,8 +42,8 @@ public class SecurityConfig {
     @Bean
     public UserDetailsService userDetailsService() {
         UserDetails user = User.builder()
-                .username("user")
-                .password(passwordEncoder().encode("password"))
+                .username("Saqi")
+                .password(passwordEncoder().encode("19980718"))
                 .roles("USER")
                 .build();
 
