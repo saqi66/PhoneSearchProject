@@ -14,9 +14,4 @@ public class SpringMvcAcademyApplication {
     }
 
 
-    @Controller
-    public class RootController {
-       
-
     }
-}
