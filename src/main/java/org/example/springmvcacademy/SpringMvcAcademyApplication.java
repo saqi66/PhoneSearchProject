@@ -16,10 +16,7 @@ public class SpringMvcAcademyApplication {
 
     @Controller
     public class RootController {
-        @GetMapping("/")
-        public RedirectView redirectToPhones() {
-            return new RedirectView("/phones");
-        }
+       
 
     }
 }
