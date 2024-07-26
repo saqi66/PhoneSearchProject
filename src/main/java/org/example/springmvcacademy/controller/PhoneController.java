@@ -21,10 +21,10 @@ public class PhoneController {
     private final PhoneUpdateService updateService;
     private final PhoneDeleteService deleteService;
 
-    @GetMapping("/phones")
+    @GetMapping("/")
     public String listPhones(Model model) {
         model.addAttribute("phones", readInfoService.readInfo());
-        return "phones";
+        return "index";
     }
 
     @GetMapping("/phones/create")
@@ -37,7 +37,7 @@ public class PhoneController {
     @PostMapping("/phones")
     public String save(@ModelAttribute PhoneCreateRequestDTO createRequestDTO) {
         createService.createPhone(createRequestDTO);
-        return "redirect:/phones";
+        return "redirect:/";
     }
 
     @GetMapping("/phones/edit/{id}")
@@ -54,12 +54,12 @@ public class PhoneController {
                          @ModelAttribute PhoneUpdateRequestDTO updateRequestDTO) {
 
         updateService.update(id, updateRequestDTO);
-        return "redirect:/phones";
+        return "redirect:/";
     }
 
     @GetMapping("/phones/{id}")
     public String delete(@PathVariable String id) {
         deleteService.deleteById(id);
-        return "redirect:/phones";
+        return "redirect:/";
     }
 }

@@ -3,7 +3,6 @@ package org.example.springmvcacademy.security;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -11,29 +10,36 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
 
 @Configuration
-@EnableWebSecurity
 public class SecurityConfig {
+
+
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .authorizeHttpRequests((requests) -> requests
-                        .requestMatchers("/phones", "/").permitAll() // Ana səhifəyə icazə ver
-                        .anyRequest().authenticated() // Qalan bütün səhifələr üçün doğrulama tələb et
+                .authorizeHttpRequests(authorizeRequests ->
+                        authorizeRequests
+                                .requestMatchers("/", "/error", "/403", "/login").permitAll()
+                                .anyRequest().authenticated()
                 )
-                .formLogin((form) -> form
-                        .loginPage("/login")
-                        .defaultSuccessUrl("/phones", true) // Uğurlu doğrulamadan sonra yönləndiriləcək səhifə
-                        .permitAll()
+                .formLogin(formLogin ->
+                        formLogin
+                                .loginPage("/login")
+                                .successHandler(savedRequestAwareAuthenticationSuccessHandler()) // Başarılı girişten sonra yönlendirme
+                                .permitAll()
                 )
-                .logout((logout) -> logout
-                        .logoutSuccessUrl("/login?logout")
-                        .permitAll()
+                .logout(logout ->
+                        logout
+                                .logoutUrl("/logout")
+                                .logoutSuccessUrl("/login?logout")
+                                .permitAll()
                 )
-                .exceptionHandling((exceptions) -> exceptions
-                        .accessDeniedPage("/403") // Yetərsiz icazə səhifəsi
+                .exceptionHandling(exceptionHandling ->
+                        exceptionHandling
+                                .accessDeniedPage("/403")
                 );
 
         return http.build();
@@ -53,5 +59,10 @@ public class SecurityConfig {
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    public SavedRequestAwareAuthenticationSuccessHandler savedRequestAwareAuthenticationSuccessHandler() {
+        return new SavedRequestAwareAuthenticationSuccessHandler();
     }
 }

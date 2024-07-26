@@ -1,16 +1,25 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <title>Login</title>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
     <style>
         body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
             font-family: Arial, sans-serif;
             background-color: #f2f2f2;
+            margin: 0;
+        }
+        .content {
+            flex: 1;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            margin: 0;
         }
         .login-container {
             background-color: #fff;
@@ -20,23 +29,23 @@
             max-width: 400px;
             width: 100%;
         }
-        h1 {
+        .login-container h1 {
             text-align: center;
             color: #333;
         }
-        label {
+        .login-container label {
             display: block;
             margin: 10px 0 5px;
         }
-        input[type="text"],
-        input[type="password"] {
+        .login-container input[type="text"],
+        .login-container input[type="password"] {
             width: 100%;
             padding: 10px;
             margin: 5px 0 10px;
             border: 1px solid #ccc;
             border-radius: 4px;
         }
-        button {
+        .login-container button {
             width: 100%;
             padding: 10px;
             background-color: #4CAF50;
@@ -45,27 +54,93 @@
             color: white;
             font-size: 16px;
         }
-        button:hover {
+        .login-container button:hover {
             background-color: #45a049;
+        }
+        .home-page-button {
+            display: block;
+            width: 50%;
+            padding: 10px;
+            background-color: #333;
+            border: none;
+            border-radius: 4px;
+            color: white;
+            font-size: 16px;
+            margin: 20px auto 0;
+            text-align: center;
+            text-decoration: none;
+        }
+        .home-page-button:hover {
+            background-color: #555;
+        }
+        .footer {
+            background-color: #343a40;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+        .footer a {
+            color: white;
         }
     </style>
 </head>
 <body>
-<div class="login-container">
-    <h1>Login</h1>
-    <form th:action="@{/login}" method="post">
-        <div>
-            <label>Username:</label>
-            <input type="text" name="username"/>
-        </div>
-        <div>
-            <label>Password:</label>
-            <input type="password" name="password"/>
-        </div>
-        <div>
-            <button type="submit">Login</button>
-        </div>
-    </form>
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+    <!-- Brand -->
+    <a class="navbar-brand" href="#">SETAPP.PRO</a>
+
+    <!-- Toggler/collapsibe Button -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Navbar links -->
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/}">Phone Search</a>
+            </li>
+        </ul>
+
+    </div>
+</nav>
+
+<div class="container content">
+    <div class="login-container">
+        <h1>Login</h1>
+        <form th:action="@{/login}" method="post">
+            <div>
+                <label>Username:</label>
+                <input type="text" name="username"/>
+            </div>
+            <div>
+                <label>Password:</label>
+                <input type="password" name="password"/>
+            </div>
+            <div>
+                <button type="submit">Login</button>
+            </div>
+        </form>
+
+    </div>
 </div>
+
+<!-- Footer -->
+<footer class="footer mt-auto">
+    <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+        <!-- Brand -->
+        <a class="navbar-brand" href="#">Phone Search Platform</a>
+
+        <!-- Navbar links -->
+        <div class="collapse navbar-collapse" id="collapsibleNavbarFooter">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/}">Home Page</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</footer>
+
 </body>
 </html>
