@@ -46,15 +46,16 @@
             </li>
         </ul>
         <ul class="navbar-nav ml-auto">
-            <li class="nav-item" sec:authorize="isAuthenticated()">
-                <form th:action="@{/logout}"  method="post" style="display:inline;">
-                    <button type="submit"  class="btn btn-danger text-white">Logout</button>
+            <li sec:authorize="isAuthenticated()" class="nav-item">
+                <form th:action="@{/logout}" method="post" style="display:inline;">
+                    <button type="submit" class="btn btn-danger text-white">Logout</button>
                 </form>
             </li>
-            <li class="nav-item" sec:authorize="!isAuthenticated()">
+            <li sec:authorize="!isAuthenticated()" class="nav-item">
                 <a class="nav-link btn btn-success text-white" th:href="@{/login}">Login</a>
             </li>
         </ul>
+
     </div>
 </nav>
 
